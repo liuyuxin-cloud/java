@@ -1,14 +1,15 @@
 import java.util.*;
 public class ConstructorTest {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         //fill the staff array with three Employee objects
-        var staff = new Employee[3];
+        Employee[] staff = new Employee[3];
 
-        staff[0] = new Employee("Herry",40000);
+        staff[0] = new Employee("Herry", 40000);
         staff[1] = new Employee(60000);
         staff[2] = new Employee();
     }
-class Employee{
+}
+class Employee {
     private static int nextId;
     private int id;
     private String name = "" ;
@@ -40,7 +41,7 @@ class Employee{
     public double getSalary(){
         return  getSalary();
     }
-    public int getId{
+    public int getId(){
         return id;
     }
 

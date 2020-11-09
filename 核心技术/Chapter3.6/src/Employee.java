@@ -1,6 +1,5 @@
-package com.horstmann.corejava;
 import java.time.*;
-public class PackageTest {
+public class Employee {
     private String name;
     private double salary;
     private LocalDate hireDay;
