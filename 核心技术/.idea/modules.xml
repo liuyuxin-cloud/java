@@ -3,11 +3,12 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Chapter3/Chapter3.iml" filepath="$PROJECT_DIR$/Chapter3/Chapter3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Chapter3-6/Chapter3-6.iml" filepath="$PROJECT_DIR$/Chapter3-6/Chapter3-6.iml" />
       <module fileurl="file://$PROJECT_DIR$/Chapter3.2/Chapter3.2.iml" filepath="$PROJECT_DIR$/Chapter3.2/Chapter3.2.iml" />
       <module fileurl="file://$PROJECT_DIR$/Chapter3.3/Chapter3.3.iml" filepath="$PROJECT_DIR$/Chapter3.3/Chapter3.3.iml" />
       <module fileurl="file://$PROJECT_DIR$/Chapter3.4/Chapter3.4.iml" filepath="$PROJECT_DIR$/Chapter3.4/Chapter3.4.iml" />
       <module fileurl="file://$PROJECT_DIR$/Chapter3.5/Chapter3.5.iml" filepath="$PROJECT_DIR$/Chapter3.5/Chapter3.5.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Chapter3.6/Chapter3.6.iml" filepath="$PROJECT_DIR$/Chapter3.6/Chapter3.6.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Chapter4/Chapter4.iml" filepath="$PROJECT_DIR$/Chapter4/Chapter4.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/核心技术.iml" filepath="$PROJECT_DIR$/.idea/核心技术.iml" />
     </modules>
   </component>
