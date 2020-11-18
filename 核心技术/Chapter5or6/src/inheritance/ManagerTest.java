@@ -10,7 +10,7 @@ public class ManagerTest{
         staff[2] = new Employee("Tommy Tester",40000,1990,3,15);
 
         for(Employee e : staff )
-            System.out.println("name= " + e.getName() + ",salary=" + e.getsalary());
+            System.out.println("name= " + e.getName() + ",salary=" + e.getSalary());
     }
 
 }

@@ -12,6 +12,12 @@ public class Employee {
         this.salary = salary;
         hireDay = LocalDate.of(year,month,day);
     }
+
+    public Employee(String name, double salary) {
+        this.name = name;
+        this.salary = salary;
+    }
+
     public String getName(){
         return name;
     }
@@ -25,5 +31,4 @@ public class Employee {
         double raise = salary * byPercent / 100;
         salary += raise;
     }
-
 }

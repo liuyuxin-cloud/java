@@ -34,7 +34,7 @@ public class Employee {
 
     }
     public int hashCode(){
-        return Objects.hashCode(name,salary,hireDay);
+        return Objects.hashCode(name);
     }
     public String toString(){
         return getClass().getName() + "[name=" + name + ",salary=" + salary + "hireDay=" + hireDay + "]";

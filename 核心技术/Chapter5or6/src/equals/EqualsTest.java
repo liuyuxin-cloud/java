@@ -3,7 +3,7 @@ package equals;
 public class EqualsTest {
     public static void main(String[] args){
         var alice1 = new Employee("Alice Adams",75000,1987,12,15);
-        var alice2 = alicel;
+        var alice2 = alice1;
         var alice3 = new Employee("Alice Adams",75000,1987,12,15);
         var bob = new Employee("Bob Brandson",50000,1989,10,1);
         System.out.println("alice1 == alice2:" + (alice1 == alice2));
