@@ -1,4 +1,5 @@
 package logging;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
@@ -7,20 +8,19 @@ import javax.swing.*;
 import javax.swing.text.html.ImageView;
 
 public class LoggingImageViewer {
-    public static void main(String[] args){
-        if(System.getProperty("java.util.logging.config.class") == null &&
-                    System.getProperty("java.util.logging.config.file") == null){
-            try{
+    public static void main(String[] args) {
+        if (System.getProperty("java.util.logging.config.class") == null &&
+                System.getProperty("java.util.logging.config.file") == null) {
+            try {
                 Logger.getLogger("com.horstmann.corejava").setLevel(Level.ALL);
                 final int LOG_ROTATION_COUNT = 10;
-                var handler = new FileHandler("%h/LoggingImageViewer.log",0,LOG_ROTATION_COUNT);
+                var handler = new FileHandler("%h/LoggingImageViewer.log", 0, LOG_ROTATION_COUNT);
                 Logger.getLogger("com.horstmann.corejava").addHandler(handler);
-            }
-            catch(IOException e){
-                Logger.getLogger("com.horstmann.corejava").log(Level.SEVERE,"Can't create log file handler",e);
+            } catch (IOException e) {
+                Logger.getLogger("com.horstmann.corejava").log(Level.SEVERE, "Can't create log file handler", e);
             }
         }
-        EventQueue.invokeLater(() ->{
+        EventQueue.invokeLater(() -> {
             var windowHandler = new WindowHandler();
             windowHandler.setLevel(Level.ALL);
             Logger.getLogger("com.horstmann.corejava").addHandler(windowHandler);
@@ -34,14 +34,17 @@ public class LoggingImageViewer {
         });
     }
 }
-class ImageViewerFrame extends JFrame{
+
+class ImageViewerFrame extends JFrame {
     private static final int DEFAULT_WIDTH = 300;
     private static final int DEFAULT_HEIGHT = 400;
     private JLabel label;
-    private static Logger logger = Logger.getLogger("com.horstmann.corejava");;
-    public ImageViewerFrame(){
-        logger.entering("ImageViewerFrame","<init>");
-        setSize(DEFAULT_WIDTH,DEFAULT_HEIGHT);
+    private static Logger logger = Logger.getLogger("com.horstmann.corejava");
+    ;
+
+    public ImageViewerFrame() {
+        logger.entering("ImageViewerFrame", "<init>");
+        setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
 
         var menuBar = new JMenuBar();
         setJMenuBar(menuBar);
@@ -56,7 +59,7 @@ class ImageViewerFrame extends JFrame{
         var exitItem = new JMenuItem("Exit");
         menu.add(exitItem);
         exitItem.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent event){
+            public void actionPerformed(ActionEvent event) {
                 logger.fine("Exiting.");
                 System.exit(0);
             }
@@ -64,55 +67,59 @@ class ImageViewerFrame extends JFrame{
 
         label = new JLabel();
         add(label);
-        logger.exiting("ImageViewerFrame","<init>");
+        logger.exiting("ImageViewerFrame", "<init>");
     }
-    private class FileOpenListener implements ActionListener{
-        public void actionPerformed(ActionEvent event){
-            logger.entering("ImageViewerFrame.FileOpenListener","actionPerpormed",event);
+
+    private class FileOpenListener implements ActionListener {
+        public void actionPerformed(ActionEvent event) {
+            logger.entering("ImageViewerFrame.FileOpenListener", "actionPerpormed", event);
 
             var chooser = new JFileChooser();
             chooser.setCurrentDirectory(new File("."));
 
-            chooser.setFileFilter(new javax.swing.filechooser.FileFilter(){
-                public boolean accept(File f){
+            chooser.setFileFilter(new javax.swing.filechooser.FileFilter() {
+                public boolean accept(File f) {
                     return f.getName().toLowerCase().endsWith(".gif") || f.isDirectory();
                 }
 
-                public String getDescription(){
+                public String getDescription() {
                     return "GIF Images";
                 }
             });
             int r = chooser.showOpenDialog(ImageViewerFrame.this);
-            if(r == JFileChooser.APPROVE_OPTION){
+            if (r == JFileChooser.APPROVE_OPTION) {
                 String name = chooser.getSelectedFile().getPath();
-                logger.log(Level.FINE,"Reading file {0}",name);
+                logger.log(Level.FINE, "Reading file {0}", name);
                 label.setIcon(new ImageIcon(name));
-            }
-            else logger.fine("File open dialog canceled.");
-            logger.exiting("ImageViewerFrame.FIleOpenListener","actionPerformed");
+            } else logger.fine("File open dialog canceled.");
+            logger.exiting("ImageViewerFrame.FIleOpenListener", "actionPerformed");
         }
     }
 }
-class WindowHandler extends StreamHandler{
+
+class WindowHandler extends StreamHandler {
     private JFrame frame;
-    public WindowHandler(){
+
+    public WindowHandler() {
         frame = new JFrame();
         var output = new JTextArea();
         output.setEditable(false);
-        frame.setSize(200,200);
+        frame.setSize(200, 200);
         frame.add(new JScrollPane(output));
         frame.setFocusableWindowState(false);
         frame.setVisible(true);
         setOutputStream(new OutputStream() {
-            public void write(int b){
+            public void write(int b) {
             }
-            public void write(byte[] b,int off,int len){
-                output.append(new String(b,off,len));
+
+            public void write(byte[] b, int off, int len) {
+                output.append(new String(b, off, len));
             }
         });
     }
-    public void publish(LogRecord record){
-        if(!frame.isVisible()) return;
+
+    public void publish(LogRecord record) {
+        if (!frame.isVisible()) return;
         super.publish(record);
         flush();
     }
